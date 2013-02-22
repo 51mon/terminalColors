@@ -1,6 +1,6 @@
 {
-  "name": "terminalColors",
+  "name": "tc",
   "version": 0.1,
-  "repository": "git@github.com:51mon/coffee-stuff.git",
-  "main": "ts"
+  "repository": "git@github.com:51mon/terminalColors.git",
+  "main": "./terminalColors"
 }
