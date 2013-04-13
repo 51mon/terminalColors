@@ -1,4 +1,3 @@
-coffee-stuff
-============
+tc = require 'tc'
 
-Misc
+console.log tc.bold().blue 'This is blue'
