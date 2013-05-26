@@ -31,7 +31,7 @@ class Shell
       @codes.push _code
     if _codes?
       @codes.push _codes...
-    console.log 'constructor', @codes
+    #console.log 'constructor', @codes
     insertCode = (v) -> # Don't mutate (update) the object, create a new one
       (text) ->
         console.log v
@@ -43,7 +43,7 @@ class Shell
     for k, v of sgrCodes
       @[k] = insertCode v
   write: (text) ->
-    console.log 'write', @codes
+    #console.log 'write', @codes
     "\u001b[#{@codes.join ';'}m"+text+'\u001b[0m'
 
 
