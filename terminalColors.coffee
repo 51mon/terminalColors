@@ -1,4 +1,3 @@
-
 # ANSI escape code
 sgrCodes =
   reset: 0
@@ -28,22 +27,24 @@ for k, v of colors
 class Shell
   constructor: (_code, _codes) ->
     @codes = []
+    Object.defineProperty @, 'codes', enumerable: false
     if _code?
       @codes.push _code
     if _codes?
       @codes.push _codes...
     #console.log 'constructor', @codes
-    insertCode = (v) -> # Don't mutate (update) the object, create a new one
+  write: (text) ->
+    #console.log 'write', @codes
+    "\u001b[#{@codes.join ';'}m#{text}\u001b[0m"
+
+insertCode = (v) -> # Don't mutate (update) the object, create a new one
       (text) ->
         shell = new Shell v, @codes
         if text?
           shell.write text
         else
           shell
-    for k, v of sgrCodes
-      @[k] = insertCode v
-  write: (text) ->
-    #console.log 'write', @codes
-    "\u001b[#{@codes.join ';'}m#{text}\u001b[0m"
+for k, v of sgrCodes
+  Shell::[k] = insertCode v
 
 module.exports = new Shell()
