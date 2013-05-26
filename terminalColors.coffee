@@ -33,7 +33,7 @@ class Shell
   write: (text) ->
     "\u001b[#{@codes.join ';'}m#{text}\u001b[0m"
 
-# Inject the formatting  methods in the class (and return a new object)
+# Inject the formatting methods in Shell (the methods return a new object)
 for k, v of sgrCodes
   do (v) ->
     Shell::[k] = (text) ->
