@@ -25,23 +25,19 @@ for k, v of colors
   sgrCodes['soft_bg_'+k] = 100+v
 
 class Shell
-  constructor: (_code, _codes) ->
+  constructor: (codes) ->
     @codes = []
     Object.defineProperty @, 'codes', enumerable: false
-    if _code?
-      @codes.push _code
-    if _codes?
-      @codes.push _codes...
-    #console.log 'constructor', @codes
+    if codes?
+      @codes.push codes...
   write: (text) ->
-    #console.log 'write', @codes
     "\u001b[#{@codes.join ';'}m#{text}\u001b[0m"
 
-# Don't mutate (update) the object, create a new one
+# Inject the formatting  methods in the class (and return a new object)
 for k, v of sgrCodes
   do (v) ->
     Shell::[k] = (text) ->
-      shell = new Shell v, @codes
+      shell = new Shell @codes.concat v
       if text?
         shell.write text
       else
