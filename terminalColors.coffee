@@ -37,14 +37,14 @@ class Shell
     #console.log 'write', @codes
     "\u001b[#{@codes.join ';'}m#{text}\u001b[0m"
 
-insertCode = (v) -> # Don't mutate (update) the object, create a new one
-      (text) ->
-        shell = new Shell v, @codes
-        if text?
-          shell.write text
-        else
-          shell
+# Don't mutate (update) the object, create a new one
 for k, v of sgrCodes
-  Shell::[k] = insertCode v
+  do (v) ->
+    Shell::[k] = (text) ->
+      shell = new Shell v, @codes
+      if text?
+        shell.write text
+      else
+        shell
 
 module.exports = new Shell()
