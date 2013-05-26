@@ -1,3 +1,7 @@
-tc = require 'tc'
+In Coffee script:
 
-console.log tc.bold().blue 'This is blue'
+    tc = require 'tc'
+    
+    console.log tc.blue 'This is blue'
+    
+    console.log tc.bg_green().bold().red 'Hola'
