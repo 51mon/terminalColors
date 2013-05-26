@@ -34,7 +34,6 @@ class Shell
     #console.log 'constructor', @codes
     insertCode = (v) -> # Don't mutate (update) the object, create a new one
       (text) ->
-        console.log v
         shell = new Shell v, @codes
         if text?
           shell.write text
