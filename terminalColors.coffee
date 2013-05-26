@@ -24,6 +24,7 @@ for k, v of colors
   sgrCodes['bg_'+k] = 40+v
   sgrCodes['soft_'+k] = 90+v
   sgrCodes['soft_bg_'+k] = 100+v
+
 class Shell
   constructor: (_code, _codes) ->
     @codes = []
@@ -43,7 +44,6 @@ class Shell
       @[k] = insertCode v
   write: (text) ->
     #console.log 'write', @codes
-    "\u001b[#{@codes.join ';'}m"+text+'\u001b[0m'
-
+    "\u001b[#{@codes.join ';'}m#{text}\u001b[0m"
 
 module.exports = new Shell()
